@@ -8,28 +8,7 @@ The setup runs two peer vLLM instances that share a common KV-cache store via
 LMCache, enabling fault-tolerance experiments: when one instance restarts it
 can recover its KV cache from MinIO instead of recomputing from scratch.
 
-## Architecture
 
-```
- ┌──────────────┐   ┌──────────────┐
- │  vLLM inst 0 │   │  vLLM inst 1 │   :8000 / :8001
- │  (LMCache)   │   │  (LMCache)   │
- └──────┬───────┘   └──────┬───────┘
-        │  ZMQ              │  ZMQ
-        └────────┬──────────┘
-                 │ :8300 (pull) / :8400 (reply)
-      ┌──────────▼──────────┐
-      │  LMCache Controller │   :8100
-      └─────────────────────┘
-
-        KV chunks → S3 PUT/GET
-
-      ┌─────────────────────┐
-      │       MinIO         │   :9000 (API) / :9001 (Console)
-      │  bucket: lmcache-   │
-      │         bucket      │
-      └─────────────────────┘
-```
 
 ### Port reference
 
