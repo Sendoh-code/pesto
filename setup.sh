@@ -15,9 +15,7 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LMCACHE_SRC="${LMCACHE_SRC:-$REPO_DIR/LMCache}"
 
-echo "[setup] Creating uv venv..."
 cd "$REPO_DIR"
-uv venv
 
 echo "[setup] Installing uv-managed packages (vllm, boto3, ...)..."
 uv sync
