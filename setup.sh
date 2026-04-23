@@ -13,7 +13,7 @@
 
 set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LMCACHE_SRC="${LMCACHE_SRC:-$HOME/LMCache_minIO/LMCache}"
+LMCACHE_SRC="${LMCACHE_SRC:-$REPO_DIR/LMCache}"
 
 echo "[setup] Creating uv venv..."
 cd "$REPO_DIR"
@@ -23,7 +23,7 @@ echo "[setup] Installing uv-managed packages (vllm, boto3, ...)..."
 uv sync
 
 echo "[setup] Installing LMCache from source: $LMCACHE_SRC"
-"$REPO_DIR/.venv/bin/pip" install -e "$LMCACHE_SRC" --no-build-isolation
+uv pip install -e "$LMCACHE_SRC" --no-build-isolation
 
 echo "[setup] Done. Venv: $REPO_DIR/.venv"
 echo "[setup] LMCache installed from: $LMCACHE_SRC"
