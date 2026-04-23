@@ -4,4 +4,4 @@
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$REPO_DIR/.venv/bin/activate"
 
-python3 -m lmcache.v1.api_server --port 8100 --monitor-port 8200
+python3 -m lmcache.v1.api_server --port 8100
