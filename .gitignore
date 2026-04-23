@@ -1,0 +1,7 @@
+.venv/
+minio-data/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+/uv.lock
