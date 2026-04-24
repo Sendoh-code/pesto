@@ -36,15 +36,10 @@ can recover its KV cache from MinIO instead of recomputing from scratch.
 ### 1. Clone with submodules
 
 ```bash
-git clone --recurse-submodules <repo-url> pesto
+git clone <repo-url> pesto
 cd pesto
 ```
 
-If you already cloned without `--recurse-submodules`:
-
-```bash
-git submodule update --init
-```
 
 ### 2. Build the environment
 
