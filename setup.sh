@@ -37,6 +37,13 @@ echo "[setup] Installing LMCache from source: $LMCACHE_SRC"
 SETUPTOOLS_SCM_PRETEND_VERSION_FOR_LMCACHE="0.0.0" \
   uv pip install -e "$LMCACHE_SRC" --no-build-isolation
 
+echo "[setup] Building LMCache CUDA extensions..."
+(
+  cd "$LMCACHE_SRC"
+  SETUPTOOLS_SCM_PRETEND_VERSION_FOR_LMCACHE="0.0.0" \
+    python setup.py build_ext --inplace
+)
+
 # ── MinIO binary ──────────────────────────────────────────────────────────────
 echo "[setup] Checking for MinIO binary..."
 if ! command -v minio &>/dev/null; then
