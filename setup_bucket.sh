@@ -4,6 +4,20 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$REPO_DIR/.venv/bin/activate"
 
+echo "[bucket] Waiting for MinIO to be ready..."
+for i in $(seq 1 30); do
+    if curl -sf "http://localhost:9000/minio/health/live" &>/dev/null; then
+        break
+    fi
+    if [ "$i" -eq 30 ]; then
+        echo "[bucket] Error: MinIO did not become ready after 30 seconds." >&2
+        echo "[bucket] Make sure start_minio.sh is running." >&2
+        exit 1
+    fi
+    sleep 1
+done
+echo "[bucket] MinIO is ready."
+
 python3 - <<'EOF'
 import boto3, botocore
 

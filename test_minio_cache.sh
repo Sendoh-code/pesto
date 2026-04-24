@@ -24,7 +24,7 @@ MODEL="Qwen/Qwen2.5-0.5B"
 
 PROMPT="The history of artificial intelligence begins in antiquity, with myths, stories, and rumors of artificial beings endowed with intelligence or consciousness by master craftsmen. The seeds of modern AI were planted by classical philosophers who attempted to describe the process of human thinking as the mechanical manipulation of symbols. This work culminated in the invention of the programmable digital computer in the 1940s, a machine based on the abstract essence of mathematical reasoning. This device and the ideas behind it inspired a handful of scientists to begin seriously discussing the possibility of building an electronic brain. The field of AI research was founded at a workshop held on the campus of Dartmouth College during the summer of 1956. Those who attended would become the leaders of AI research for decades. Many of them made predictions that within a generation, machines as intelligent as humans would exist. Millions of dollars were poured into making this vision come true. Eventually it became obvious that commercial developers and government researchers had grossly underestimated the difficulty of the project."
 
-log() { echo "[$(date +%H:%M:%S)] $*"; }
+log() { echo "[$(date +%H:%M:%S)] $*" >&2; }
 
 send_request() {
     local label=$1
