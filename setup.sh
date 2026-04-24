@@ -21,7 +21,8 @@ echo "[setup] Installing uv-managed packages (vllm, boto3, ...)..."
 uv sync
 
 echo "[setup] Installing LMCache from source: $LMCACHE_SRC"
-uv pip install -e "$LMCACHE_SRC" --no-build-isolation
+SETUPTOOLS_SCM_PRETEND_VERSION_FOR_LMCACHE="0.0.0" \
+  uv pip install -e "$LMCACHE_SRC" --no-build-isolation
 
 echo "[setup] Done. Venv: $REPO_DIR/.venv"
 echo "[setup] LMCache installed from: $LMCACHE_SRC"
